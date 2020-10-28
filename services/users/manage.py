@@ -53,6 +53,14 @@ def seed_db():
     db.session.add(User(username="carlos.romero", email="jonathanromero@upeu.edu.pe"))
     db.session.commit()
 
+@cli.command()
+def test():
+    """Ejecutar los tests sin code coverage"""
+    tests = unittest.TestLoader().discover("project/tests", pattern="test*.py")
+    result = unittest.TextTestRunner(verbosity=2).run(tests)
+    if result.wasSuccessful():
+        return 0
+    sys.exit(result)
 
 if __name__ == "__main__":
     cli()
