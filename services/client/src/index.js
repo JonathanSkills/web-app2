@@ -1,17 +1,25 @@
-import React, { Component } from 'react';  // nuevo
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
+import axios from 'axios';  // new
+import UsersList from './components/UsersList';
 
-// nuevo
 class App extends Component {
   constructor() {
     super();
+      // nuevo
+    this.state = {
+      users: []
+    };
   }
+  // new
+  componentDidMount() {
+    this.getUsers();
+  };
 
   getUsers() {
-    axios.get(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`)
-    .then((res) => { console.log(res); })
-    .catch((err) => { console.log(err); });
+    axios.get(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`)  // nuevo
+    .then((res) => { this.setState({ users: res.data.data.users }); })
+  .catch((err) => { console.log(err); });
   }
   render() {
     return (
@@ -22,6 +30,7 @@ class App extends Component {
               <br/>
               <h1 className="title is-1">All Users</h1>
               <hr/><br/>
+              <UsersList users={this.state.users}/>
             </div>
           </div>
         </div>
