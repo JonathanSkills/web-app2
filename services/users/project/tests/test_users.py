@@ -83,8 +83,7 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'carlos.romero',
-                    'email': 'carlosromero@upeu.edu.pe',
-                    'password': 'carlangas'
+                    'email': 'carlosromero@upeu.edu.pe'
                 }),
                 content_type='application/json',
             )
@@ -92,8 +91,7 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'carlos.romero',
-                    'email': 'carlosromero@upeu.edu.pe',
-                    'password': 'carlangas'
+                    'email': 'carlosromero@upeu.edu.pe'
                 }),
                 content_type='application/json',
             )
