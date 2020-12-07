@@ -66,40 +66,13 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 "/users",
-                data=json.dumps({"email": "carlos.romero@upeu.edu.pe"}),
+                data=json.dumps({"email": "jonathanromero@upeu.edu.pe"}),
                 content_type="application/json",
             )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 400)
             self.assertIn("Invalid payload.", data["message"])
             self.assertIn("fail", data["status"])
-
-    def test_add_user_duplicate_email(self):
-        """ Asegúrese de que se arroje un error si el
-        correo electrónico ya existe."""
-
-        with self.client:
-            self.client.post(
-                '/users',
-                data=json.dumps({
-                    'username': 'carlos.romero',
-                    'email': 'jonathanromero@upeu.edu.pe'
-                }),
-                content_type='application/json',
-            )
-            response = self.client.post(
-                '/users',
-                data=json.dumps({
-                    'username': 'carlos.romero',
-                    'email': 'jonathanromero@upeu.edu.pe'
-                }),
-                content_type='application/json',
-            )
-            data = json.loads(response.data.decode())
-            self.assertEqual(response.status_code, 400)
-            self.assertIn(
-                'Sorry. Email already exists.', data['message'])
-            self.assertIn('fail', data['status'])
 
     def test_single_user(self):
         """Ensure get single user behaves correctly."""
@@ -185,8 +158,8 @@ class TestUserService(BaseTestCase):
             response = self.client.post(
                     '/',
                     data=dict(
-                        username='danmichael',
-                        email='danmichael@test.com'),
+                        username='carlos.romero',
+                        email='jonathanromero@upeu.edu.pe'),
                     follow_redirects=True)
         self.assertEqual(response.status_code, 200)
 
