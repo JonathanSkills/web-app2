@@ -168,15 +168,15 @@ class TestUserService(BaseTestCase):
         """Asegurando que la ruta principal se comporte correctamente
         cuando se hayan agregado usuarios a la base de datos."""
 
-        add_user('abel.huanca', 'abel.huanca@upeu.edu.pe')
-        add_user('abelthf', 'abelthf@gmail.com')
+        add_user('carlos.romero', 'jonathanromero@upeu.edu.pe')
+        add_user('cromero', 'kalosrom@gmail.com')
         with self.client:
             response = self.client.get('/')
             self.assertEqual(response.status_code, 200)
             self.assertIn(b'All Users', response.data)
             self.assertNotIn(b'<p>No users!</p>', response.data)
-            self.assertIn(b'abel.huanca', response.data)
-            self.assertIn(b'abelthf', response.data)
+            self.assertIn(b'carlos.romero', response.data)
+            self.assertIn(b'cromero', response.data)
 
     def test_main_add_user(self):
         """
