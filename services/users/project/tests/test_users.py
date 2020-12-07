@@ -75,30 +75,33 @@ class TestUserService(BaseTestCase):
             self.assertIn("fail", data["status"])
 
     def test_add_user_duplicate_email(self):
-        """Asegurese de que se arroje un error si el correo electronico ya
-        existe."""
+        """ Asegúrese de que se arroje un error si el
+        correo electrónico ya existe."""
+
         with self.client:
             self.client.post(
-                "/users",
-                data=json.dumps(
-                    {"username": "carlos.romero", "email":
-                     "jonathanromero@upeu.edu.pe"}
-                ),
-                content_type="application/json",
+                '/users',
+                data=json.dumps({
+                    'username': 'carlos.romero',
+                    'email': 'carlosromero@upeu.edu.pe',
+                    'password': 'carlangas'
+                }),
+                content_type='application/json',
             )
             response = self.client.post(
-                "/users",
-                data=json.dumps(
-                    {"username": "carlangas.romero",
-                     "email": "kalosromero@upeu.edu.pe"}
-                ),
-                content_type="application/json",
+                '/users',
+                data=json.dumps({
+                    'username': 'carlos.romero',
+                    'email': 'carlosromero@upeu.edu.pe',
+                    'password': 'carlangas'
+                }),
+                content_type='application/json',
             )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 400)
             self.assertIn(
-                    "Sorry. That email already exists.", data["message"])
-            self.assertIn("fail", data["status"])
+                'Sorry. Email already exists.', data['message'])
+            self.assertIn('fail', data['status'])
 
     def test_single_user(self):
         """Ensure get single user behaves correctly."""
