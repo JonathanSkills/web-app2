@@ -82,16 +82,16 @@ class TestUserService(BaseTestCase):
             self.client.post(
                 '/users',
                 data=json.dumps({
-                    'username': 'carlitos.romero',
-                    'email': 'carlosromerito@upeu.edu.pe'
+                    'username': 'carlos.romero',
+                    'email': 'jonathanromero@upeu.edu.pe'
                 }),
                 content_type='application/json',
             )
             response = self.client.post(
                 '/users',
                 data=json.dumps({
-                    'username': 'carlitos.romero',
-                    'email': 'carlosromerito@upeu.edu.pe'
+                    'username': 'carlos.romero',
+                    'email': 'jonathanromero@upeu.edu.pe'
                 }),
                 content_type='application/json',
             )
