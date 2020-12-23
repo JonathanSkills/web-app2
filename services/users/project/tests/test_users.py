@@ -26,9 +26,9 @@ class TestUserService(BaseTestCase):
                 "/users",
                 data=json.dumps(
                     {
-                        "username": "carlos.romero", 
-                        "email":"jonathanromero@upeu.edu.pe",
-                        "password":"karlin123456"
+                        "username": "carlos.romero",
+                        "email": "jonathanromero@upeu.edu.pe",
+                        "password": "karlin123456"
                     }
                 ),
                 content_type="application/json",
@@ -71,7 +71,11 @@ class TestUserService(BaseTestCase):
 
     def test_single_user(self):
         """Ensure get single user behaves correctly."""
-        user = add_user("carlos.romero", "jonathanromero@upeu.edu.pe", 'greaterthaneight')
+        user = add_user(
+            "carlos.romero",
+            "jonathanromero@upeu.edu.pe",
+            'greaterthaneight'
+        )
         with self.client:
             response = self.client.get(f"/users/{user.id}")
             data = json.loads(response.data.decode())
@@ -159,7 +163,6 @@ class TestUserService(BaseTestCase):
                     follow_redirects=True)
         self.assertEqual(response.status_code, 200)
 
-     
     def test_add_user_invalid_json_keys_no_password(self):
         """
         asegúrese de que se produzca un error si
@@ -177,7 +180,6 @@ class TestUserService(BaseTestCase):
             self.assertEqual(response.status_code, 400)
             self.assertIn('Invalid payload.', data['message'])
             self.assertIn('fail', data['status'])
-
 
 
 if __name__ == "__main__":

@@ -49,8 +49,22 @@ def cov():
 @cli.command("seed_db")
 def seed_db():
     """Siembra la base de datos."""
-    db.session.add(User(username="cromero", email="kalosrom@gmail.com"))
-    db.session.add(User(username="carlos.romero", email="jonathanromero@upeu.edu.pe"))
+    db.session.add(User(username='carlos.romero',
+                        email="carlosromero@upeu.edu.pe",
+                        password="password"))
+    db.session.add(User(username='carlin',
+                        email="carlin123@gmail.com",
+                        password="password"))
+    db.session.add(User(username='jonathanrom',
+                        email="jonathanromero@gmail.com",
+                        password="password"))
+    db.session.add(User(username='lucastañeda',
+                        email="lucastañeda@gmail.com",
+                        password="password"))
+    db.session.add(User(username='lunatica123',
+                        email="lunatica123@gmail.com",
+                        password="password"))
+
     db.session.commit()
 
 @cli.command()
